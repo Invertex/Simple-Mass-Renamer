@@ -8,7 +8,7 @@ namespace SimpleMassRenamer
     {
         public readonly string gitPage = "https://github.com/Invertex/Simple-Mass-Renamer";
         public string[] fileList;
-        public string cantRenameText = "Drag Files and/or Directories Here";
+        public string cantRenameText = "Drag Files and/or Folders Here";
         public int renamedFiles = 0;
         public int renamedFolders = 0;
 

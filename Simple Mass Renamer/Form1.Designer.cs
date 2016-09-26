@@ -84,7 +84,7 @@
             this.dropInfo.Name = "dropInfo";
             this.dropInfo.Size = new System.Drawing.Size(491, 98);
             this.dropInfo.TabIndex = 0;
-            this.dropInfo.Text = "Drag Files and/or Directories Here";
+            this.dropInfo.Text = "Drag Files and/or Folders Here";
             this.dropInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.toolTip1.SetToolTip(this.dropInfo, "Drag all files and folders you wish to rename onto here.");
             // 
@@ -120,7 +120,7 @@
             this.renameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.renameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Millimeter, ((byte)(0)));
             this.renameButton.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.renameButton.Location = new System.Drawing.Point(172, 166);
+            this.renameButton.Location = new System.Drawing.Point(167, 166);
             this.renameButton.Name = "renameButton";
             this.renameButton.Size = new System.Drawing.Size(190, 45);
             this.renameButton.TabIndex = 4;
@@ -130,8 +130,8 @@
             // 
             // doSubDirs
             // 
-            this.doSubDirs.AccessibleDescription = "Look for files and or folders in all subdirectories of input folders.";
-            this.doSubDirs.AccessibleName = "Include sub directories.";
+            this.doSubDirs.AccessibleDescription = "Look for files and or folders in all sub-folders of input folders.";
+            this.doSubDirs.AccessibleName = "Include sub folders.";
             this.doSubDirs.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolTip;
             this.doSubDirs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.doSubDirs.AutoSize = true;
@@ -139,13 +139,13 @@
             this.doSubDirs.Checked = true;
             this.doSubDirs.CheckState = System.Windows.Forms.CheckState.Checked;
             this.doSubDirs.ForeColor = System.Drawing.Color.DeepSkyBlue;
-            this.doSubDirs.Location = new System.Drawing.Point(412, 170);
+            this.doSubDirs.Location = new System.Drawing.Point(391, 170);
             this.doSubDirs.Name = "doSubDirs";
             this.doSubDirs.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.doSubDirs.Size = new System.Drawing.Size(98, 17);
+            this.doSubDirs.Size = new System.Drawing.Size(119, 17);
             this.doSubDirs.TabIndex = 5;
-            this.doSubDirs.Text = "Sub Directories";
-            this.toolTip1.SetToolTip(this.doSubDirs, "Look for files and or folders in all subdirectories of input folders.");
+            this.doSubDirs.Text = "Search Sub Folders";
+            this.toolTip1.SetToolTip(this.doSubDirs, "Look for files and or folders in all sub-folders of input folders.");
             this.doSubDirs.UseVisualStyleBackColor = false;
             // 
             // renameFolders
@@ -230,7 +230,7 @@
             this.renameToBorderColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.renameToBorderColor.Controls.Add(this.replaceWithInput);
             this.renameToBorderColor.Controls.Add(this.renameToBGColor);
-            this.renameToBorderColor.Location = new System.Drawing.Point(318, 135);
+            this.renameToBorderColor.Location = new System.Drawing.Point(318, 134);
             this.renameToBorderColor.Name = "renameToBorderColor";
             this.renameToBorderColor.Size = new System.Drawing.Size(192, 26);
             this.renameToBorderColor.TabIndex = 12;
