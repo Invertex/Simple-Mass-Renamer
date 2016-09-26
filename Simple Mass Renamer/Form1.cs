@@ -6,6 +6,7 @@ namespace SimpleMassRenamer
 {
     public partial class SimplerRenamer : Form
     {
+        public readonly string gitPage = "https://github.com/Invertex/Simple-Mass-Renamer";
         public string[] fileList;
         public string cantRenameText = "Drag Files and/or Directories Here";
         public int renamedFiles = 0;
@@ -185,7 +186,7 @@ namespace SimpleMassRenamer
 
         private void openGitPage(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/Invertex/Simple-Mass-Renamer");
+            Process.Start(gitPage);
         }
     }
 }
