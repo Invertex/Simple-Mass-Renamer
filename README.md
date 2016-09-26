@@ -7,4 +7,4 @@ There is a setting to also search sub-directories and whether it should also ren
 
 The output log at the bottom is also resizeable if you wish to see more results at once.
 
-<h1><a href="https://github.com/Invertex/Simple-Mass-Renamer/blob/master/Simple%20Mass%20Renamer/bin/Release/Simple%20Mass%20Renamer.exe">DOWNLOAD</a></h1>
+<h1><a href="https://github.com/Invertex/Simple-Mass-Renamer/blob/master/Simple%20Mass%20Renamer/bin/Release/Simple%20Mass%20Renamer.exe?raw=true">DOWNLOAD</a></h1>
