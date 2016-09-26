@@ -82,6 +82,7 @@ namespace SimpleMassRenamer
             {
                 if (replaceText != "" && replaceText != null)
                 {
+                    outputLog.Text = "";
                     foreach (string file in fileList)
                     {
                         if (File.GetAttributes(file).HasFlag(FileAttributes.Directory))
