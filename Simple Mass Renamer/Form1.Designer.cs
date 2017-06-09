@@ -1,7 +1,10 @@
-﻿namespace SimpleMassRenamer
+﻿using System;
+
+namespace SimpleMassRenamer
 {
     partial class SimplerRenamer
     {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -48,6 +51,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.conflictOptions = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dropPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.renameToBorderColor.SuspendLayout();
@@ -86,7 +91,7 @@
             this.dropInfo.TabIndex = 0;
             this.dropInfo.Text = "Drag Files and/or Folders Here";
             this.dropInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.toolTip1.SetToolTip(this.dropInfo, "Drag all files and folders you wish to rename onto here.");
+            this.toolTip1.SetToolTip(this.dropInfo, resources.GetString("dropInfo.ToolTip"));
             // 
             // replaceWithInput
             // 
@@ -156,8 +161,6 @@
             this.renameFolders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.renameFolders.AutoSize = true;
             this.renameFolders.BackColor = System.Drawing.Color.Transparent;
-            this.renameFolders.Checked = true;
-            this.renameFolders.CheckState = System.Windows.Forms.CheckState.Checked;
             this.renameFolders.ForeColor = System.Drawing.Color.DeepSkyBlue;
             this.renameFolders.Location = new System.Drawing.Point(407, 193);
             this.renameFolders.Name = "renameFolders";
@@ -310,6 +313,38 @@
             // 
             this.toolTip1.Tag = "";
             // 
+            // conflictOptions
+            // 
+            this.conflictOptions.DataSource = new SimpleMassRenamer.SimplerRenamer.ConflictSetting[] {
+        SimpleMassRenamer.SimplerRenamer.ConflictSetting.Overwrite,
+        SimpleMassRenamer.SimplerRenamer.ConflictSetting.DontRename,
+        SimpleMassRenamer.SimplerRenamer.ConflictSetting.DeleteSelf};
+            this.conflictOptions.FormattingEnabled = true;
+            this.conflictOptions.ImeMode = System.Windows.Forms.ImeMode.Off;
+            /*this.conflictOptions.Items.AddRange(new object[] {
+            SimpleMassRenamer.SimplerRenamer.ConflictSetting.Overwrite,
+            SimpleMassRenamer.SimplerRenamer.ConflictSetting.DontRename,
+            SimpleMassRenamer.SimplerRenamer.ConflictSetting.DeleteSelf});*/
+            this.conflictOptions.Location = new System.Drawing.Point(12, 189);
+            this.conflictOptions.MaxDropDownItems = 3;
+            this.conflictOptions.Name = "conflictOptions";
+            this.conflictOptions.Size = new System.Drawing.Size(121, 21);
+            this.conflictOptions.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.conflictOptions, "What should the renamer do when a file is being renamed to something that already" +
+        " exists?");
+            this.conflictOptions.SelectedIndexChanged += new System.EventHandler(this.ChangeConflictSetting);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.label1.Location = new System.Drawing.Point(9, 171);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 15);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "On Filename Conflict:";
+            // 
             // SimplerRenamer
             // 
             this.AcceptButton = this.renameButton;
@@ -318,6 +353,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(521, 313);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.conflictOptions);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
@@ -368,6 +405,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ComboBox conflictOptions;
+        private System.Windows.Forms.Label label1;
     }
 }
 

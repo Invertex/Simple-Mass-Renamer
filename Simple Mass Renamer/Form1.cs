@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
+
 namespace SimpleMassRenamer
 {
     public partial class SimplerRenamer : Form
@@ -15,7 +16,13 @@ namespace SimpleMassRenamer
         public SimplerRenamer()
         {
             InitializeComponent();
+            conflictOptions.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+        public enum ConflictSetting
+        {
+            Overwrite = 0, DontRename = 1, DeleteSelf = 2
+        };
+        public ConflictSetting conflictSetting = ConflictSetting.DeleteSelf;
 
         private void processDrop(object sender, DragEventArgs e)
         {
@@ -151,6 +158,24 @@ namespace SimpleMassRenamer
             if (fileName != oldName)
             {
                 fileName = Path.Combine(filePath, fileName);
+
+                if(File.Exists(fileName))
+                {
+                    if(conflictSetting == ConflictSetting.DeleteSelf)
+                    {
+                        File.Delete(file);
+                        return;
+                    }
+                    else if(conflictSetting == ConflictSetting.DontRename)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        File.Delete(fileName);
+                    }
+                }
+                
                 File.Move(file, fileName);
                 outputLog.AppendText(Environment.NewLine);
                 outputLog.AppendLine("File: ");
@@ -169,11 +194,20 @@ namespace SimpleMassRenamer
             if (folderName != oldName)
             {
                 folderName = Path.Combine(folderPath, folderName);
-                Directory.Move(dir, folderName);
-                outputLog.AppendText(Environment.NewLine);
-                outputLog.AppendLine("Folder: ");
-                outputLog.AppendLine(dir + " >> " + folderName);
-                renamedFolders += 1;
+
+                if (!File.Exists(folderName))
+                {
+                    Directory.Move(dir, folderName);
+                    outputLog.AppendText(Environment.NewLine);
+                    outputLog.AppendLine("Folder: ");
+                    outputLog.AppendLine(dir + " >> " + folderName);
+                    renamedFolders += 1;
+                }
+                else
+                {
+                    outputLog.AppendText(Environment.NewLine);
+                    outputLog.AppendLine("'" + folderName + "' already exists. Cannot rename '" + dir + "' to it.");
+                }
             }
         }
 
@@ -188,6 +222,13 @@ namespace SimpleMassRenamer
         private void openGitPage(object sender, EventArgs e)
         {
             Process.Start(gitPage);
+        }
+
+        private void ChangeConflictSetting(object sender, EventArgs e)
+        {
+            //Enum.TryParse<ConflictSetting>(conflictOptions.SelectedValue.ToString(), out conflictSetting);
+            conflictSetting = (ConflictSetting)conflictOptions.SelectedValue;
+            Console.WriteLine(conflictSetting.ToString());
         }
     }
 }

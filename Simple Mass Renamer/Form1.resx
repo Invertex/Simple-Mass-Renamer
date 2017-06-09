@@ -120,6 +120,9 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="dropInfo.ToolTip" xml:space="preserve">
+    <value>Drag all files and folders onto here that might contain your replace text in their names. Even if it's many thousands of files, it's no problem, it will find and replace only the ones containing your search term.</value>
+  </data>
   <data name="outputLog.Text" xml:space="preserve">
     <value>Simply drag the files/folders onto the input area, define what word to search for &amp; what to replace it with.
 Hit "RENAME" and it will look at all the files/folders and replace the matching text in their names.
