@@ -11,6 +11,7 @@ namespace SimpleMassRenamer
         [STAThread]
         static void Main()
         {
+            RegistryCheck.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SimplerRenamer());

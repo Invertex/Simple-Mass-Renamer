@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace SimpleMassRenamer
 {
@@ -16,6 +17,10 @@ namespace SimpleMassRenamer
         public SimplerRenamer()
         {
             InitializeComponent();
+            this.conflictOptions.DataSource = new SimpleMassRenamer.SimplerRenamer.ConflictSetting[] {
+        SimpleMassRenamer.SimplerRenamer.ConflictSetting.Overwrite,
+        SimpleMassRenamer.SimplerRenamer.ConflictSetting.DontRename,
+        SimpleMassRenamer.SimplerRenamer.ConflictSetting.DeleteSelf};
             conflictOptions.DropDownStyle = ComboBoxStyle.DropDownList;
         }
         public enum ConflictSetting
@@ -80,13 +85,32 @@ namespace SimpleMassRenamer
             }
         }
 
+        Regex reg;
+        
+        private bool IsValidRegex(string input)
+        {
+            try
+            {
+                reg = new Regex(input);
+                return true;
+            }
+            catch
+            {
+                outputLog.AppendLine("");
+                outputLog.AppendLine("Regex is invalid. Use an online RegEx editor to check that validity of it.");
+            }
+            return false;
+        }
+
         private void startRename(object sender, EventArgs e)
         {
+
             string replaceText = replaceInput.Text;
             string replaceWithText = replaceWithInput.Text;
             dropPanel.Enabled = false;
             if (fileList != null)
             {
+                if(useRegex.Checked && !IsValidRegex(replaceText)){ dropPanel.Enabled = true; return; }
                 if (replaceText != "" && replaceText != null)
                 {
                     outputLog.Text = "";
@@ -153,8 +177,14 @@ namespace SimpleMassRenamer
             string fileName = Path.GetFileName(file);
             string oldName = fileName;
             string filePath = Path.GetDirectoryName(file);
-            fileName = fileName.Replace(replace, replaceWith);
-            
+            if (useRegex.Checked)
+            {
+                fileName = reg.Replace(fileName, replaceWith);
+            }
+            else
+            {
+                fileName = fileName.Replace(replace, replaceWith);
+            }
             if (fileName != oldName)
             {
                 fileName = Path.Combine(filePath, fileName);
@@ -189,8 +219,15 @@ namespace SimpleMassRenamer
             string folderName = Path.GetFileName(dir);
             string oldName = folderName;
             string folderPath = Path.GetDirectoryName(dir);
-            folderName = folderName.Replace(replace, replaceWith);
 
+            if (useRegex.Checked)
+            {
+                folderName = reg.Replace(dir, replaceWith);
+            }
+            else
+            {
+                folderName = folderName.Replace(replace, replaceWith);
+            }
             if (folderName != oldName)
             {
                 folderName = Path.Combine(folderPath, folderName);
@@ -229,6 +266,16 @@ namespace SimpleMassRenamer
             //Enum.TryParse<ConflictSetting>(conflictOptions.SelectedValue.ToString(), out conflictSetting);
             conflictSetting = (ConflictSetting)conflictOptions.SelectedValue;
             Console.WriteLine(conflictSetting.ToString());
+        }
+
+        private void SimplerRenamer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void renameToBorderColor_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
