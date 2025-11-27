@@ -7,4 +7,4 @@ There is a setting to also search sub-directories and whether it should also ren
 
 The output log at the bottom is also resizeable if you wish to see more results at once.
 
-<img src="https://i.imgur.com/eNUsza0.png"/>
+<img width="725" height="465" alt="Untitled" src="https://github.com/user-attachments/assets/e22a7185-84e9-4d99-8bc9-aae60c9b6ef2" />
