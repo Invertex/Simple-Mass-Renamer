@@ -16,12 +16,21 @@ namespace SimpleMassRenamer
 
         public SimplerRenamer()
         {
+            SetClientSizeCore(RegistryCheck.windowWidth, RegistryCheck.windowHeight);
+            Height = RegistryCheck.windowHeight;
+            Width = RegistryCheck.windowWidth;
+
             InitializeComponent();
-            this.conflictOptions.DataSource = new SimpleMassRenamer.SimplerRenamer.ConflictSetting[] {
-        SimpleMassRenamer.SimplerRenamer.ConflictSetting.Overwrite,
-        SimpleMassRenamer.SimplerRenamer.ConflictSetting.DontRename,
-        SimpleMassRenamer.SimplerRenamer.ConflictSetting.DeleteSelf};
+            this.conflictOptions.DataSource = new SimpleMassRenamer.SimplerRenamer.ConflictSetting[]
+            {
+                SimpleMassRenamer.SimplerRenamer.ConflictSetting.Overwrite,
+                SimpleMassRenamer.SimplerRenamer.ConflictSetting.DontRename,
+                SimpleMassRenamer.SimplerRenamer.ConflictSetting.DeleteSelf
+            };
             conflictOptions.DropDownStyle = ComboBoxStyle.DropDownList;
+            Height = RegistryCheck.windowHeight;
+            Width = RegistryCheck.windowWidth;
+            UpdateStyles();
         }
         public enum ConflictSetting
         {
@@ -104,10 +113,10 @@ namespace SimpleMassRenamer
 
         private void startRename(object sender, EventArgs e)
         {
-
             string replaceText = replaceInput.Text;
             string replaceWithText = replaceWithInput.Text;
             dropPanel.Enabled = false;
+
             if (fileList != null)
             {
                 if(useRegex.Checked && !IsValidRegex(replaceText)){ dropPanel.Enabled = true; return; }
@@ -270,12 +279,18 @@ namespace SimpleMassRenamer
 
         private void SimplerRenamer_Load(object sender, EventArgs e)
         {
+            outputLog.Select(0, 0);
+            outputLog.DeselectAll();
+        }
+
+        private void replaceWithInput_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void renameToBorderColor_Paint(object sender, PaintEventArgs e)
+        private void windowResized(object sender, EventArgs e)
         {
-
+            RegistryCheck.UpdateWindowSizeReg(Size.Width, Size.Height);
         }
     }
 }
